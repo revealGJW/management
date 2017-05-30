@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cars.management.dao.CarPriceDAO">
+    <sql id="table">carprice</sql>
+    <sql id="selectFields">id, carId, price, discount, changeDate, status
+    </sql>
+    <select id="selectCarPrices" resultType="com.cars.management.model.CarPrice">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+        <if test="carId != 0">
+            WHERE carId = #{carId}
+        </if>
+
+        ORDER BY id DESC
+        LIMIT #{offset},#{limit}
+    </select>
+
+
+</mapper>
+
+
