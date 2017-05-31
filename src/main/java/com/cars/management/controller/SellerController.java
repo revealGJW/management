@@ -8,10 +8,13 @@ import com.cars.management.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +37,20 @@ public class SellerController {
         return "sellers";
     }
 
-
+    @RequestMapping("/create")
+    public String create(){
+        return "createseller";
+    }
+    @RequestMapping(path = "/update/", method = RequestMethod.POST)
+    public String update(Seller seller){
+        //@RequestParam("name") String name, @RequestParam("age") int age,@RequestParam("tel") String tel
+        /*Seller seller = new Seller();
+        seller.setName(name);
+        seller.setAge(age);
+        seller.setTel(tel);*/
+        sellerDAO.addSeller(seller);
+        return "redirect:/sellers/" + seller.getId();
+    }
     @RequestMapping(path = {"/{singleId}"})
     public String single(Model model, @PathVariable("singleId") int id, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
         model.addAttribute("seller", sellerDAO.selectSeller(id));

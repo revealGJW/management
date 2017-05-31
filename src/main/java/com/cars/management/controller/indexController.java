@@ -38,6 +38,24 @@ public class indexController {
         return "car";
     }
 
+    @RequestMapping("/createseller")
+    public String createseller(){
+        return "createseller";
+    }
+
+    @RequestMapping("/createcar")
+    public String createcar(){
+        return "createcar";
+    }
+    @RequestMapping("/createorder")
+    public String createorder(){
+        return "createorder";
+    }
+    @RequestMapping("/createcarprice")
+    public String createcarprice(){
+        return "createcarprice";
+    }
+
     private List<ViewObject> getCars(int page){
         List<ViewObject> vos = new ArrayList<ViewObject>();
         List<Car> cars = carService.selectCarsByPage(page);

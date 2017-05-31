@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Bootstrap Admin</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -8,25 +8,25 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
-    
-    <link rel="stylesheet" type="text/css" href="stylesheets/theme.css">
-    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/lib/bootstrap/css/bootstrap.css">
 
-    <script src="lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/theme.css">
+    <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.css">
+
+    <script src="/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
 
     <!-- Demo page code -->
     <script>
-        function checkUser(){
-            var name = document.getElementById("name").value;
-            var age = document.getElementById("age").value;
+        function checkCarPrice() {
+            var price = document.getElementById("price").value;
+            var discount = document.getElementById("discount").value;
 
-            if(name == ""  ){
-                alert("用户名不能为空");
+            if (price == "") {
+                alert("价格不能为空");
                 return false;
             }
-            if(age == ""  ){
-                alert("年龄不能为空");
+            if (discount == "") {
+                alert("折扣不能为空");
                 return false;
             }
             document.getElementById("tab").submit();
@@ -34,16 +34,21 @@
     </script>
     <style type="text/css">
         #line-chart {
-            height:300px;
-            width:800px;
+            height: 300px;
+            width: 800px;
             margin: 0px auto;
             margin-top: 1em;
         }
-        .brand { font-family: georgia, serif; }
+
+        .brand {
+            font-family: georgia, serif;
+        }
+
         .brand .first {
             color: #ccc;
             font-style: italic;
         }
+
         .brand .second {
             color: #fff;
             font-weight: bold;
@@ -52,7 +57,7 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <!-- Le fav and touch icons -->
@@ -61,118 +66,120 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-  </head>
+</head>
 
-  <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
-  <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
-  <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
-  <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
-  <!--[if (gt IE 9)|!(IE)]><!--> 
-  <body class=""> 
-  <!--<![endif]-->
-    
-    #parse("header.html")
-    
+<!--[if lt IE 7 ]>
+<body class="ie ie6"> <![endif]-->
+<!--[if IE 7 ]>
+<body class="ie ie7 "> <![endif]-->
+<!--[if IE 8 ]>
+<body class="ie ie8 "> <![endif]-->
+<!--[if IE 9 ]>
+<body class="ie ie9 "> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<body class="">
+<!--<![endif]-->
 
-
-    
-
-    
-
-    
-    <div class="content">
-        
-        <div class="header">
-            
-            <h1 class="page-title">添加销售人员</h1>
-        </div>
-        
-                <ul class="breadcrumb">
-            <li><a href="/index.html">主页</a> <span class="divider">/</span></li>
-            <li><a href="/sellers.html">销售人员管理</a> <span class="divider">/</span></li>
-            <li class="active">添加销售人员</li>
-        </ul>
-
-        <div class="container-fluid">
-            <div class="row-fluid">
-                    
-<div class="btn-toolbar">
-    <button type="submit" class="btn btn-primary" onclick = "checkUser();"><i class="icon-save"></i> 保存</button>
-  <div class="btn-group">
-  </div>
-</div>
-<div class="well">
-    <div id="myTabContent" class="tab-content">
-      <div class="tab-pane active in" id="home">
-    <form action="/sellers/update/" method="post" id="tab">
-        <label>姓名</label>
-        <input id="name" name="name" type="text" class="input-xlarge">
-        <label>年龄</label>
-        <input id="age" name="age" type="text" class="input-xlarge">
-        <label>电话</label>
-        <input id="tel" name="tel" type="text" class="input-xlarge">
-        <!--<label>Time Zone</label>
-        <select name="DropDownTimezone" id="DropDownTimezone" class="input-xlarge">
-          <option value="-12.0">(GMT -12:00) Eniwetok, Kwajalein</option>
-          <option value="-11.0">(GMT -11:00) Midway Island, Samoa</option>
-          <option value="-10.0">(GMT -10:00) Hawaii</option>
-          <option value="-9.0">(GMT -9:00) Alaska</option>
-          <option selected="selected" value="-8.0">(GMT -8:00) Pacific Time (US &amp; Canada)</option>
-          <option value="-7.0">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
-          <option value="-6.0">(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
-          <option value="-5.0">(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
-          <option value="-4.0">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
-          <option value="-3.5">(GMT -3:30) Newfoundland</option>
-          <option value="-3.0">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
-          <option value="-2.0">(GMT -2:00) Mid-Atlantic</option>
-          <option value="-1.0">(GMT -1:00 hour) Azores, Cape Verde Islands</option>
-          <option value="0.0">(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
-          <option value="1.0">(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris</option>
-          <option value="2.0">(GMT +2:00) Kaliningrad, South Africa</option>
-          <option value="3.0">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
-          <option value="3.5">(GMT +3:30) Tehran</option>
-          <option value="4.0">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
-          <option value="4.5">(GMT +4:30) Kabul</option>
-          <option value="5.0">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
-          <option value="5.5">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
-          <option value="5.75">(GMT +5:45) Kathmandu</option>
-          <option value="6.0">(GMT +6:00) Almaty, Dhaka, Colombo</option>
-          <option value="7.0">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
-          <option value="8.0">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
-          <option value="9.0">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
-          <option value="9.5">(GMT +9:30) Adelaide, Darwin</option>
-          <option value="10.0">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
-          <option value="11.0">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
-          <option value="12.0">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
-    </select>-->
-    </form>
-      </div>
-      <div class="tab-pane fade" id="profile">
-      </div>
-  </div>
-
-</div>
+#parse("header.html")
 
 
+<div class="content">
 
-                    
-                    #parse("footer.html")
-                    
+    <div class="header">
+
+        <h1 class="page-title">添加销售人员</h1>
+    </div>
+
+    <ul class="breadcrumb">
+        <li><a href="/index.html">主页</a> <span class="divider">/</span></li>
+        <li><a href="/sellers.html">销售人员管理</a> <span class="divider">/</span></li>
+        <li class="active">添加销售人员</li>
+    </ul>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+
+            <div class="btn-toolbar">
+                <button type="submit" class="btn btn-primary" onclick="checkCarPrice();"><i class="icon-save"></i> 保存
+                </button>
+                <div class="btn-group">
+                </div>
             </div>
+            <div class="well">
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane active in" id="home">
+                        <form action="/carprices/update/" method="post" id="tab">
+                            <label>价格</label>
+                            <input id="price" name="price" type="text" class="input-xlarge">
+                            <label>折扣</label>
+                            <input id="discount" name="discount" type="text" class="input-xlarge">
+                            <label>汽车型号</label>
+                            <select name="carId" id="carId" class="input-xlarge">
+                                #foreach($car in $carlist)
+                                <option value="$!{car.id}">$!{car.brand} $!{car.name}</option>
+                                #end
+                            </select>
+                            <!--<label>Time Zone</label>
+                            <select name="DropDownTimezone" id="DropDownTimezone" class="input-xlarge">
+                              <option value="-12.0">(GMT -12:00) Eniwetok, Kwajalein</option>
+                              <option value="-11.0">(GMT -11:00) Midway Island, Samoa</option>
+                              <option value="-10.0">(GMT -10:00) Hawaii</option>
+                              <option value="-9.0">(GMT -9:00) Alaska</option>
+                              <option selected="selected" value="-8.0">(GMT -8:00) Pacific Time (US &amp; Canada)</option>
+                              <option value="-7.0">(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+                              <option value="-6.0">(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
+                              <option value="-5.0">(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
+                              <option value="-4.0">(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+                              <option value="-3.5">(GMT -3:30) Newfoundland</option>
+                              <option value="-3.0">(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+                              <option value="-2.0">(GMT -2:00) Mid-Atlantic</option>
+                              <option value="-1.0">(GMT -1:00 hour) Azores, Cape Verde Islands</option>
+                              <option value="0.0">(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
+                              <option value="1.0">(GMT +1:00 hour) Brussels, Copenhagen, Madrid, Paris</option>
+                              <option value="2.0">(GMT +2:00) Kaliningrad, South Africa</option>
+                              <option value="3.0">(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+                              <option value="3.5">(GMT +3:30) Tehran</option>
+                              <option value="4.0">(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+                              <option value="4.5">(GMT +4:30) Kabul</option>
+                              <option value="5.0">(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+                              <option value="5.5">(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
+                              <option value="5.75">(GMT +5:45) Kathmandu</option>
+                              <option value="6.0">(GMT +6:00) Almaty, Dhaka, Colombo</option>
+                              <option value="7.0">(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+                              <option value="8.0">(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+                              <option value="9.0">(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+                              <option value="9.5">(GMT +9:30) Adelaide, Darwin</option>
+                              <option value="10.0">(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+                              <option value="11.0">(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+                              <option value="12.0">(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+                        </select>-->
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="profile">
+                    </div>
+                </div>
+
+            </div>
+
+
+            #parse("footer.html")
+
         </div>
     </div>
-    
+</div>
 
 
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript">
-        $("[rel=tooltip]").tooltip();
-        $(function() {
-            $('.demo-cancel-click').click(function(){return false;});
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript">
+    $("[rel=tooltip]").tooltip();
+    $(function () {
+        $('.demo-cancel-click').click(function () {
+            return false;
         });
-    </script>
-    
-  </body>
+    });
+</script>
+
+</body>
 </html>
 
 

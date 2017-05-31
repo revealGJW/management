@@ -16,10 +16,10 @@ import java.util.List;
 @Mapper
 public interface OrderDAO {
     String TABLE_NAME = " orders ";
-    String INSERT_FILEDS = " carId, sellerId, createTime, status, finishTime ";
+    String INSERT_FILEDS = " carId, sellerId, createTime, status, finishTime, num, total ";
     String SELECT_FILEDS = " id, " + INSERT_FILEDS;
     @Insert( {" insert into ", TABLE_NAME ,"(", INSERT_FILEDS,
-            " ) values (#{carId}, #{sellerId}, #{createTime}, #{status}, #{finishTime})"})
+            " ) values (#{carId}, #{sellerId}, #{createTime}, #{status}, #{finishTime}, #{num}, #{total})"})
     int addOrder(Order order);
 
     @Select( {" select " + SELECT_FILEDS + " from " + TABLE_NAME + " where id = #{id}"})

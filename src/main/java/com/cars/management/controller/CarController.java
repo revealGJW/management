@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +19,7 @@ import java.util.List;
  * Created by GJW on 2017/5/29.
  */
 @Controller
+@RequestMapping("/cars")
 public class CarController {
 
     @Autowired
@@ -32,25 +30,29 @@ public class CarController {
     CarPriceService carPriceService;
     @Autowired
     CarPriceDAO carPriceDAO;
-    @RequestMapping(value =  "/cars")
+    @RequestMapping(value =  "")
     public String index(Model model, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
 
         model.addAttribute("vos", getCars(page));
         return "cars";
     }
 
-    @RequestMapping(value = "/cars/{carId}")
+    @RequestMapping(value = "/{carId}")
     public String carDetail(Model model, @PathVariable("carId") int carId, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
         model.addAttribute("car", carDAO.selectCar(carId));
         model.addAttribute("carprices", carPriceService.selectCarPricesByCarId(carId, page));
         return "cardetail";
     }
-    @RequestMapping("/update")
-    @ResponseBody
-    public String update(){
-        return "success";
-    }
 
+    @RequestMapping("/create")
+    public String create(Car car){
+        return "createcar";
+    }
+    @RequestMapping(path = "/update/", method = RequestMethod.POST)
+    public String update(Car car){
+        carDAO.addCar(car);
+        return "redirect:/cars/" + car.getId();
+    }
 
 
     private List<ViewObject> getCars(int page){
@@ -60,6 +62,7 @@ public class CarController {
             ViewObject vo = new ViewObject();
             vo.set("car", car);
             // vo.set("user", userService.getUser(question.getUserId()));
+            vo.set("carprice", carPriceService.selectCarPricesNow(car.getId()));
             vos.add(vo);
         }
         return vos;

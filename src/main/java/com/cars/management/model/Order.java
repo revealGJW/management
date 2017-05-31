@@ -12,6 +12,26 @@ public class Order {
     private Date createTime;
     private String status;
     private Date finishTime;
+    private float total;
+    private int num;
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+
 
     public int getId() {
         return id;

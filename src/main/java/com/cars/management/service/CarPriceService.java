@@ -6,7 +6,9 @@ import com.cars.management.model.Car;
 import com.cars.management.model.CarPrice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,5 +29,18 @@ public class CarPriceService {
 
     public List<CarPrice> selectCarPricesByCarId(int carId, int page) {
         return carPriceDAO.selectCarPrices(carId,(page - 1) * 10, 10);
+    }
+    public String createCarPrice(Model model){
+        return "createcarprice";
+    }
+
+    public void update(CarPrice carPrice){
+        carPrice.setChangeDate(new Date());
+        int carId = carPrice.getCarId();
+        carPriceDAO.ChangeNowPriceToHistory(carId);
+        carPriceDAO.addCarPrice(carPrice);
+    }
+    public CarPrice selectCarPricesNow(int carId) {
+        return carPriceDAO.selectLatestPrice(carId);
     }
 }

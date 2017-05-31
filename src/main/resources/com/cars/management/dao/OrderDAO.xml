@@ -3,7 +3,7 @@
                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cars.management.dao.OrderDAO">
 <sql id="table">orders</sql>
-<sql id="selectFields">id, carId, sellerId, createTime, status, finishTime
+<sql id="selectFields">id, carId, sellerId, createTime, status, finishTime, num, total
 </sql>
 <select id="selectOrders" resultType="com.cars.management.model.Order">
     SELECT

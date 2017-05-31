@@ -8,6 +8,7 @@ import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +18,8 @@ import java.util.List;
 public class OrderService {
     @Autowired
     OrderDAO orderDAO;
-
+    @Autowired
+    CarPriceService carPriceService;
     public List<Order> getCars(int offset, int limit) {
         return orderDAO.selectOrders(0, offset, limit);
     }
@@ -28,5 +30,14 @@ public class OrderService {
 
     public List<Order> selectOrdersBySeller(int sellerId, int page) {
         return orderDAO.selectOrders(sellerId, (page - 1) * 10, 10);
+    }
+
+    public void addOrder(Order order){
+        order.setCreateTime(new Date());
+        order.setTotal(carPriceService.selectCarPricesNow(order.getCarId()).getPrice() *carPriceService.selectCarPricesNow(order.getCarId()).getDiscount() * order.getNum());
+        if(order.getStatus().equals("已交货"))
+            order.setFinishTime(new Date());
+        orderDAO.addOrder(order);
+
     }
 }

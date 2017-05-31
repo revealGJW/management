@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +29,8 @@ public class CarPriceController {
     CarPriceService carPriceService;
     @Autowired
     CarPriceDAO carPriceDAO;
+    @Autowired
+    CarDAO carDAO;
     @RequestMapping(value =  "")
     public String index(Model model, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
 
@@ -34,7 +38,17 @@ public class CarPriceController {
         return "carprices";
     }
 
+    @RequestMapping("/create")
+    public String create(Model model){
+        model.addAttribute("carlist", carDAO.selectCars(0,99));
+        return "createcarprice";
+    }
 
+    @RequestMapping(path = "/update/", method = RequestMethod.POST)
+    public String update(CarPrice carPrice){
+        carPriceService.update(carPrice);
+        return "redirect:/carprices/";
+    }
     @RequestMapping(path = {"/{singleId}"})
     public String single(Model model, @PathVariable("singleId") int id){
         model.addAttribute("carprice", carPriceDAO.selectCarPrice(id));
