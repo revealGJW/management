@@ -55,6 +55,23 @@ public class OrderController {
         return "redirect:/orders/";
     }
 
+    @RequestMapping("/waitpay")
+    public String wait(Model model){
+        model.addAttribute("vos",orderService.selectOrdersByStatus("待支付", 0, 1));
+        return "orders";
+    }
+
+    @RequestMapping("/alreadypay")
+    public String already(Model model){
+        model.addAttribute("vos",orderService.selectOrdersByStatus("已支付", 0, 1));
+        return "orders";
+    }
+
+    @RequestMapping("/finish")
+    public String finish(Model model){
+        model.addAttribute("vos",orderService.selectOrdersByStatus("已交货", 0, 1));
+        return "orders";
+    }
     @RequestMapping(path = {"/{singleId}"})
     public String single(Model model, @PathVariable("singleId") int id){
         model.addAttribute("order", orderDAO.selectOrder(id));

@@ -32,10 +32,14 @@ public class OrderService {
         return orderDAO.selectOrders(sellerId, (page - 1) * 10, 10);
     }
 
+    public List<Order> selectOrdersByStatus(String status, int sellerId, int page) {
+        return orderDAO.selectOrdersByStatus(status, sellerId,(page - 1) * 10, 10);
+    }
+
     public void addOrder(Order order){
         order.setCreateTime(new Date());
         order.setTotal(carPriceService.selectCarPricesNow(order.getCarId()).getPrice() *carPriceService.selectCarPricesNow(order.getCarId()).getDiscount() * order.getNum());
-        if(order.getStatus().equals("å·²äº¤è´§"))
+        if(order.getStatus().equals("ÒÑ½»»õ"))
             order.setFinishTime(new Date());
         orderDAO.addOrder(order);
 

@@ -1,11 +1,20 @@
 <div class="navbar">
     <div class="navbar-inner">
-        <a class="brand" href="index.html"><span class="first">汽车销售</span> <span class="second">管理系统</span></a>
+        <a class="brand" href="/index.html"><span class="first">汽车销售</span> <span class="second">管理系统</span></a>
     </div>
 </div>
 <div class="sidebar-nav">
-    <a href="/orders.html" class="nav-header" ><i class="icon-question-sign"></i>订单管理</a>
-    <a href="/cars.html" class="nav-header" ><i class="icon-question-sign"></i>汽车管理</a>
-    <a href="/carprices.html" class="nav-header" ><i class="icon-question-sign"></i>价格管理</a>
-    <a href="/sellers.html" class="nav-header" ><i class="icon-question-sign"></i>销售人员管理</a>
+    <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>订单管理</a>
+    <ul id="dashboard-menu" class="nav nav-list collapse in">
+        <li><a href="/orders/">总览</a></li>
+        <li ><a href="/orders/waitpay">待支付</a></li>
+        <li ><a href="/orders/alreadypay">已支付</a></li>
+        <li ><a href="/orders/finish">已交货</a></li>
+
+    </ul>
+
+    <a href="/orders/" class="nav-header" ><i class="icon-question-sign"></i>订单管理</a>
+    <a href="/cars/" class="nav-header" ><i class="icon-question-sign"></i>汽车管理</a>
+    <a href="/carprices/" class="nav-header" ><i class="icon-question-sign"></i>价格管理</a>
+    <a href="/sellers/" class="nav-header" ><i class="icon-question-sign"></i>销售人员管理</a>
 </div>

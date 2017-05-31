@@ -27,5 +27,6 @@ public interface OrderDAO {
 
     List<Order> selectOrders(@Param("sellerId") int sellerId, @Param("offset") int offset, @Param("limit") int limit);
 
-
+    @Select( {" select " + SELECT_FILEDS + " from " + TABLE_NAME + " where sellerId = #{sellerId} and status = #{status} order by id limit #{offset}, #{limit}"})
+    List<Order> selectOrdersByStatus(@Param("status") String status, @Param("sellerId") int sellerId, @Param("offset") int offset, @Param("limit") int limit);
 }
