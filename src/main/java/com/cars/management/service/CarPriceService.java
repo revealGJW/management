@@ -34,7 +34,7 @@ public class CarPriceService {
         return "createcarprice";
     }
 
-    public void update(CarPrice carPrice){
+    public void add(CarPrice carPrice){
         carPrice.setChangeDate(new Date());
         int carId = carPrice.getCarId();
         carPriceDAO.ChangeNowPriceToHistory(carId);

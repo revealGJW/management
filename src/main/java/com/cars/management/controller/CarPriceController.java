@@ -44,11 +44,32 @@ public class CarPriceController {
         return "createcarprice";
     }
 
-    @RequestMapping(path = "/update/", method = RequestMethod.POST)
-    public String update(CarPrice carPrice){
-        carPriceService.update(carPrice);
+    @RequestMapping(path = "/add/", method = RequestMethod.POST)
+    public String add(CarPrice carPrice){
+        carPriceService.add(carPrice);
         return "redirect:/carprices/";
     }
+
+    @RequestMapping("/update/{id}")
+    public String update(@PathVariable("id") int id, Model model){
+        model.addAttribute("carprice", carPriceDAO.selectCarPrice(id));
+        return "updatecarprice";
+    }
+
+    @RequestMapping(value = "/update/", method = RequestMethod.POST)
+    public String update(CarPrice carPrice){
+        carPriceDAO.update(carPrice);
+        carPrice.setChangeDate(new Date());
+        return "redirect:/carprices/";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id){
+        carPriceDAO.delete(id);
+        return "redirect:/carprices/";
+    }
+
+
     @RequestMapping(path = {"/{singleId}"})
     public String single(Model model, @PathVariable("singleId") int id){
         model.addAttribute("carprice", carPriceDAO.selectCarPrice(id));

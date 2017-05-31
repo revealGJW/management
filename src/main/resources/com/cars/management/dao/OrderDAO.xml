@@ -17,4 +17,17 @@
         LIMIT #{offset},#{limit}
     </select>
 
+    <select id="selectOrdersByStatus" resultType="com.cars.management.model.Order">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+        WHERE status = #{status}
+        <if test="sellerId != 0">
+            AND sellerId = #{sellerId}
+        </if>
+        ORDER BY id DESC
+        LIMIT #{offset},#{limit}
+    </select>
+
 </mapper>

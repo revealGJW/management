@@ -48,12 +48,30 @@ public class CarController {
     public String create(Car car){
         return "createcar";
     }
-    @RequestMapping(path = "/update/", method = RequestMethod.POST)
-    public String update(Car car){
+
+    @RequestMapping(path = "/add/", method = RequestMethod.POST)
+    public String add(Car car){
         carDAO.addCar(car);
         return "redirect:/cars/" + car.getId();
     }
 
+    @RequestMapping("/update/{id}")
+    public String update(@PathVariable("id") int id, Model model){
+        model.addAttribute("car", carDAO.selectCar(id));
+        return "updatecar";
+    }
+
+    @RequestMapping(value = "/update/", method = RequestMethod.POST)
+    public String update(Car car){
+        carDAO.update(car);
+        return "redirect:/cars/" + car.getId();
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id){
+        carDAO.delete(id);
+        return "redirect:/cars/";
+    }
 
     private List<ViewObject> getCars(int page){
         List<ViewObject> vos = new ArrayList<ViewObject>();

@@ -25,4 +25,9 @@ public interface CarDAO {
 
     List<Car> selectCars(@Param("offset") int offset, @Param("limit") int limit);
 
+    @Update({" update " + TABLE_NAME + " set brand = #{brand} , name = #{name} , seatnum = #{seatnum}, gearbox = #{gearbox} where id = #{id} "})
+    void update(Car car);
+
+    @Delete({"delete from " + TABLE_NAME + " where id = #{id}"})
+    void delete(@Param("id") int id);
 }

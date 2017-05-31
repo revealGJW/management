@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,7 +39,7 @@ public class OrderController {
     @RequestMapping(value =  "")
     public String index(Model model, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
 
-        model.addAttribute("vos", getCars(page));
+        model.addAttribute("vos", getOrders(page));
         return "orders";
     }
 
@@ -49,27 +50,30 @@ public class OrderController {
         return "createorder";
     }
 
-    @RequestMapping(path = "/update/", method = RequestMethod.POST)
-    public String update(Order order){
+    @RequestMapping(path = "/add/", method = RequestMethod.POST)
+    public String add(Order order){
         orderService.addOrder(order);
         return "redirect:/orders/";
     }
 
     @RequestMapping("/waitpay")
-    public String wait(Model model){
-        model.addAttribute("vos",orderService.selectOrdersByStatus("待支付", 0, 1));
+    public String wait(Model model, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
+        String shit = "待支付";
+        model.addAttribute("vos",getOrdersByStatus(shit, page));
         return "orders";
     }
 
     @RequestMapping("/alreadypay")
-    public String already(Model model){
-        model.addAttribute("vos",orderService.selectOrdersByStatus("已支付", 0, 1));
+    public String already(Model model, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
+        String shit = "已支付";
+        model.addAttribute("vos",getOrdersByStatus(shit, page));
         return "orders";
     }
 
     @RequestMapping("/finish")
-    public String finish(Model model){
-        model.addAttribute("vos",orderService.selectOrdersByStatus("已交货", 0, 1));
+    public String finish(Model model, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
+        String shit = "已交货";
+        model.addAttribute("vos",getOrdersByStatus(shit, page));
         return "orders";
     }
     @RequestMapping(path = {"/{singleId}"})
@@ -78,9 +82,21 @@ public class OrderController {
         return "order";
     }
 
-    private List<ViewObject> getCars(int page){
+    private List<ViewObject> getOrders(int page){
         List<ViewObject> vos = new ArrayList<ViewObject>();
         List<Order> orders = orderService.selectOrdersByPage(page);
+        for (Order order : orders) {
+            ViewObject vo = new ViewObject();
+            vo.set("order", order);
+            // vo.set("user", userService.getUser(question.getUserId()));
+            vos.add(vo);
+        }
+        return vos;
+    }
+
+    private List<ViewObject> getOrdersByStatus(String status, int page){
+        List<ViewObject> vos = new ArrayList<ViewObject>();
+        List<Order> orders = orderService.selectOrdersByStatus(status, 0, page);
         for (Order order : orders) {
             ViewObject vo = new ViewObject();
             vo.set("order", order);

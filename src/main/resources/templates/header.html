@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="sidebar-nav">
-    <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>订单管理</a>
+    <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>订单管理<i class="icon-chevron-up"></i></a>
     <ul id="dashboard-menu" class="nav nav-list collapse in">
         <li><a href="/orders/">总览</a></li>
         <li ><a href="/orders/waitpay">待支付</a></li>
@@ -12,9 +12,15 @@
         <li ><a href="/orders/finish">已交货</a></li>
 
     </ul>
-
-    <a href="/orders/" class="nav-header" ><i class="icon-question-sign"></i>订单管理</a>
     <a href="/cars/" class="nav-header" ><i class="icon-question-sign"></i>汽车管理</a>
     <a href="/carprices/" class="nav-header" ><i class="icon-question-sign"></i>价格管理</a>
     <a href="/sellers/" class="nav-header" ><i class="icon-question-sign"></i>销售人员管理</a>
+
+    <script src="/lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $("[rel=tooltip]").tooltip();
+        $(function() {
+            $('.demo-cancel-click').click(function(){return false;});
+        });
+    </script>
 </div>

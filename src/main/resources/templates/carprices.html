@@ -84,7 +84,7 @@
         <div class="row-fluid">
 
             <a href="/carprices/create">
-                <button class="btn btn-primary"><i class="icon-plus"></i>添加汽车</button>
+                <button class="btn btn-primary"><i class="icon-plus"></i>添加汽车价格</button>
             </a>
             <div class="well">
                 <table class="table">
@@ -106,6 +106,8 @@
                         <td>$!{vo.carprice.discount}</td>
                         <td>$!{vo.carprice.changeDate}</td>
                         <td>$!{vo.carprice.status}</td>
+                        <td><a href="/carprices/update/$!{vo.carprice.id}"><i class="icon-pencil"></i></a>
+                            <a href="/carprices/delete/$!{vo.carprice.id}"> <i class="icon-remove"></i></a></td>
                     </tr>
                     #end
                     </tbody>

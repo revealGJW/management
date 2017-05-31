@@ -5,8 +5,10 @@ import com.cars.management.model.Seller;
 import com.cars.management.model.ViewObject;
 import com.cars.management.service.OrderService;
 import com.cars.management.service.SellerService;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,8 +43,8 @@ public class SellerController {
     public String create(){
         return "createseller";
     }
-    @RequestMapping(path = "/update/", method = RequestMethod.POST)
-    public String update(Seller seller){
+    @RequestMapping(path = "/add/", method = RequestMethod.POST)
+    public String add(Seller seller){
         //@RequestParam("name") String name, @RequestParam("age") int age,@RequestParam("tel") String tel
         /*Seller seller = new Seller();
         seller.setName(name);
@@ -51,6 +53,25 @@ public class SellerController {
         sellerDAO.addSeller(seller);
         return "redirect:/sellers/" + seller.getId();
     }
+
+    @RequestMapping("/update/{id}")
+    public String update(@PathVariable("id") int id, Model model){
+        model.addAttribute("seller", sellerDAO.selectSeller(id));
+        return "updateseller";
+    }
+
+    @RequestMapping(value = "/update/", method = RequestMethod.POST)
+    public String update(Seller seller){
+        sellerDAO.update(seller);
+        return "redirect:/sellers/" + seller.getId();
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id){
+        sellerDAO.delete(id);
+        return "redirect:/sellers/";
+    }
+
     @RequestMapping(path = {"/{singleId}"})
     public String single(Model model, @PathVariable("singleId") int id, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
         model.addAttribute("seller", sellerDAO.selectSeller(id));

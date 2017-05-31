@@ -112,15 +112,17 @@
             <div class="well">
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane active in" id="home">
-                        <form action="/cars/add/" method="post" id="tab">
+                        <form action="/cars/update/" method="post" id="tab">
+                            <label>ID</label>
+                            <input id="id" name="id" value="$!{car.id}" type="text" class="input-xlarge" readonly>
                             <label>品牌</label>
-                            <input id="brand" name="brand" type="text" class="input-xlarge">
+                            <input id="brand" value="$!{car.brand}" name="brand" type="text" class="input-xlarge">
                             <label>型号</label>
-                            <input id="name" name="name" type="text" class="input-xlarge">
+                            <input id="name" value="$!{car.name}" name="name" type="text" class="input-xlarge">
                             <label>座位数</label>
-                            <input id="seatnum" name="seatnum" type="text" class="input-xlarge">
+                            <input id="seatnum" value="$!{car.seatnum}" name="seatnum" type="text" class="input-xlarge">
                             <label>变速箱</label>
-                            <select name="gearbox" id="gearbox" class="input-xlarge">
+                            <select name="gearbox" value="$!{car.gearbox}" id="gearbox" class="input-xlarge">
                                 <option value="自动">自动变速箱</option>
                                 <option value="手动">手动变速箱</option>
                             </select>

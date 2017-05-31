@@ -21,12 +21,18 @@ public interface CarPriceDAO {
     @Select( {" select " + SELECT_FILEDS + " from " + TABLE_NAME + " where id = #{id}"})
     CarPrice selectCarPrice(@Param("id") int id);
 
-    @Update(" update " + TABLE_NAME + " set status = '历史' where carId = #{carId} and status = '当前' ")
+    @Update(" update " + TABLE_NAME + " set status = '鍘嗗彶' where carId = #{carId} and status = '褰撳墠' ")
     void ChangeNowPriceToHistory(@Param("carId") int carId);
 
-    @Select( {" select " + SELECT_FILEDS + " from " + TABLE_NAME + " where carId = #{carId} and status = '当前' "})
+    @Select( {" select " + SELECT_FILEDS + " from " + TABLE_NAME + " where carId = #{carId} and status = '褰撳墠' "})
     CarPrice selectLatestPrice(@Param("carId") int carId);
 
     List<CarPrice> selectCarPrices(@Param("carId") int carId, @Param("offset") int offset, @Param("limit") int limit);
     //List<CarPrice> selectCarPricesByCarId(@Param("carId") int carId, @Param("offset") int offset, @Param("limit") int limit);
+
+    @Update({" update " + TABLE_NAME + " set price = #{price} , discount = #{discount} where id = #{id} "})
+    void update(CarPrice carPrice);
+
+    @Delete({"delete from " + TABLE_NAME + " where id = #{id}"})
+    void delete(@Param("id") int id);
 }

@@ -2,10 +2,7 @@ package com.cars.management.dao;
 
 import com.cars.management.model.Car;
 import com.cars.management.model.Seller;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -25,4 +22,10 @@ public interface SellerDAO {
     Seller selectSeller(@Param("id") int id);
 
     List<Seller> selectSellers(@Param("offset") int offset, @Param("limit") int limit);
+
+    @Update({" update " + TABLE_NAME + " set name = #{name} , age = #{age} , tel = #{tel} where id = #{id} "})
+    void update(Seller seller);
+
+    @Delete({"delete from " + TABLE_NAME + " where id = #{id}"})
+    void delete(@Param("id") int id);
 }

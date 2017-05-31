@@ -17,20 +17,16 @@
 
     <!-- Demo page code -->
     <script>
-        function checkCar() {
-            var brand = document.getElementById("brand").value;
-            var name = document.getElementById("name").value;
-            var seatnum = document.getElementById("seatnum").value;
-            if (brand == "") {
-                alert("汽车品牌不能为空");
+        function checkCarPrice() {
+            var price = document.getElementById("price").value;
+            var discount = document.getElementById("discount").value;
+
+            if (price == "") {
+                alert("价格不能为空");
                 return false;
             }
-            if (name == "") {
-                alert("型号不能为空");
-                return false;
-            }
-            if (seatnum == "") {
-                alert("座位数不能为空");
+            if (discount == "") {
+                alert("折扣不能为空");
                 return false;
             }
             document.getElementById("tab").submit();
@@ -91,20 +87,20 @@
 
     <div class="header">
 
-        <h1 class="page-title">添加汽车</h1>
+        <h1 class="page-title">添加销售人员</h1>
     </div>
 
     <ul class="breadcrumb">
         <li><a href="/index.html">主页</a> <span class="divider">/</span></li>
-        <li><a href="/sellers.html">汽车管理</a> <span class="divider">/</span></li>
-        <li class="active">添加汽车</li>
+        <li><a href="/sellers.html">汽车价格管理</a> <span class="divider">/</span></li>
+        <li class="active">添加汽车价格</li>
     </ul>
 
     <div class="container-fluid">
         <div class="row-fluid">
 
             <div class="btn-toolbar">
-                <button type="submit" class="btn btn-primary" onclick="checkCar();"><i class="icon-save"></i> 保存
+                <button type="submit" class="btn btn-primary" onclick="checkCarPrice();"><i class="icon-save"></i> 保存
                 </button>
                 <div class="btn-group">
                 </div>
@@ -112,18 +108,16 @@
             <div class="well">
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane active in" id="home">
-                        <form action="/cars/add/" method="post" id="tab">
-                            <label>品牌</label>
-                            <input id="brand" name="brand" type="text" class="input-xlarge">
-                            <label>型号</label>
-                            <input id="name" name="name" type="text" class="input-xlarge">
-                            <label>座位数</label>
-                            <input id="seatnum" name="seatnum" type="text" class="input-xlarge">
-                            <label>变速箱</label>
-                            <select name="gearbox" id="gearbox" class="input-xlarge">
-                                <option value="自动">自动变速箱</option>
-                                <option value="手动">手动变速箱</option>
-                            </select>
+                        <form action="/carprices/update/" method="post" id="tab">
+                            <label>价格ID</label>
+                            <input name="id" value="$!{carprice.id}" id="id" class="input-xlarge" readonly></input>
+                            <label>汽车ID</label>
+                            <input name="carId" value="$!{carprice.carId}" id="carId" class="input-xlarge" readonly></input>
+                            <label>价格</label>
+                            <input id="price" value="$!{carprice.price}" name="price" type="text" class="input-xlarge">
+                            <label>折扣</label>
+                            <input id="discount" value="$!{carprice.discount}" name="discount" type="text" class="input-xlarge">
+                            <
                             <!--<label>Time Zone</label>
                             <select name="DropDownTimezone" id="DropDownTimezone" class="input-xlarge">
                               <option value="-12.0">(GMT -12:00) Eniwetok, Kwajalein</option>
