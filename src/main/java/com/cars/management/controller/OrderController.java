@@ -59,6 +59,8 @@ public class OrderController {
     @RequestMapping("/update/{id}")
     public String update(@PathVariable("id") int id, Model model){
         model.addAttribute("order", orderDAO.selectOrder(id));
+        model.addAttribute("car", carDAO.selectCar(orderDAO.selectOrder(id).getCarId()));
+        model.addAttribute("seller", sellerDAO.selectSeller(orderDAO.selectOrder(id).getSellerId()));
         model.addAttribute("carlist", carDAO.selectCars(0,99));
         model.addAttribute("sellerlist", sellerDAO.selectSellers(0,99));
         return "updateorder";
@@ -66,7 +68,7 @@ public class OrderController {
 
     @RequestMapping(value = "/update/", method = RequestMethod.POST)
     public String update(Order order){
-        orderDAO.update(order);
+        orderService.updateOrder(order);
         return "redirect:/orders/";
     }
 
@@ -108,6 +110,8 @@ public class OrderController {
         for (Order order : orders) {
             ViewObject vo = new ViewObject();
             vo.set("order", order);
+            vo.set("car", carDAO.selectCar(order.getCarId()));
+            vo.set("seller", sellerDAO.selectSeller(order.getSellerId()));
             // vo.set("user", userService.getUser(question.getUserId()));
             vos.add(vo);
         }

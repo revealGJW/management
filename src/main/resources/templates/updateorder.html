@@ -87,13 +87,13 @@
 
     <div class="header">
 
-        <h1 class="page-title">添加销售人员</h1>
+        <h1 class="page-title">编辑订单</h1>
     </div>
 
     <ul class="breadcrumb">
-        <li><a href="/index.html">主页</a> <span class="divider">/</span></li>
-        <li><a href="/sellers.html">订单管理</a> <span class="divider">/</span></li>
-        <li class="active">添加订单</li>
+        <li><a href="/index">主页</a> <span class="divider">/</span></li>
+        <li><a href="/orders">订单管理</a> <span class="divider">/</span></li>
+        <li class="active">编辑订单</li>
     </ul>
 
     <div class="container-fluid">
@@ -113,6 +113,7 @@
                             <input id="id" value="$!{order.id}" name="id" type="text" class="input-xlarge" readonly>
                             <label>购买汽车型号</label>
                             <select name="carId" id="carId" class="input-xlarge">
+                                <option value="$!{car.id}">$!{car.brand} $!{car.name}</option>
                                 #foreach($car in $carlist)
                                 <option value="$!{car.id}">$!{car.brand} $!{car.name}</option>
                                 #end
@@ -121,6 +122,7 @@
                             <input id="num" value="$!{order.num}" name="num" type="text" class="input-xlarge">
                             <label>销售人员</label>
                             <select name="sellerId" id="sellerId" class="input-xlarge">
+                                <option value="$!{seller.id}">$!{seller.name}</option>
                                 #foreach($seller in $sellerlist)
                                 <option value="$!{seller.id}">$!{seller.name}</option>
                                 #end

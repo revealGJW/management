@@ -56,6 +56,15 @@ public class OrderService {
         return orderDAO.getPending();
     }
 
+    public void updateOrder(Order order){
+        CarPrice carPrice = carPriceService.selectCarPricesNow(order.getCarId());
+        order.setTotal(carPrice.getPrice() * carPrice.getDiscount() * order.getNum());
+        if(order.getStatus().equals("已交货"))
+            order.setFinishTime(new Date());
+        orderDAO.update(order);
+
+    }
+
     public int getNum(){
         return orderDAO.getNum();
     }

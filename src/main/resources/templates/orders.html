@@ -106,8 +106,8 @@
                     #foreach($vo in $vos)
                     <tr>
                         <td>$!{vo.order.id}</td>
-                        <td><a href="/cars/$!{vo.order.carId}">$!{vo.order.carId}</a></td>
-                        <td><a href="/sellers/$!{vo.order.sellerId}">$!{vo.order.sellerId}</a></td>
+                        <td><a href="/cars/$!{vo.order.carId}">$!{vo.car.brand}$!{vo.car.name}</a></td>
+                        <td><a href="/sellers/$!{vo.order.sellerId}">$!{vo.seller.name}</a></td>
                         <td>$!{vo.order.createTime}</td>
                         <td>$!{vo.order.status}</td>
                         <td>$!{vo.order.finishTime}</td>
