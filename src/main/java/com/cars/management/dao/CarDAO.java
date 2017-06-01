@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 /**
- * Created by cfy on 2017/5/29.
+ * Created by GJW on 2017/5/29.
  */
 @Mapper
 public interface CarDAO {
