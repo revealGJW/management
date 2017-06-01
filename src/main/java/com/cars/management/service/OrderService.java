@@ -2,6 +2,7 @@ package com.cars.management.service;
 
 import com.cars.management.dao.CarDAO;
 import com.cars.management.dao.OrderDAO;
+import com.cars.management.dao.SellerDAO;
 import com.cars.management.model.Car;
 import com.cars.management.model.CarPrice;
 import com.cars.management.model.Order;
@@ -38,6 +39,15 @@ public class OrderService {
         return orderDAO.selectOrdersByStatus(status, sellerId,(page - 1) * 10, 10);
     }
 
+    public float selectTotalBySellerId(int id){
+        float ans = 0;
+        try {
+            ans = orderDAO.getTotalById(id);
+        }catch (Exception e){
+            return 0;
+        }
+        return ans;
+    }
     public float complated(){
         return orderDAO.complated();
     }

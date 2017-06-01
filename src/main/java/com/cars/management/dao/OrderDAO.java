@@ -25,6 +25,9 @@ public interface OrderDAO {
     @Select({ " select sum(total) from" + TABLE_NAME + " where status = '待支付' "})
     float getPending();
 
+    @Select({" select sum(total) from " + TABLE_NAME + " where status = '已交货' and sellerId = #{id}"})
+    float getTotalById(@Param("id") int id);
+
     @Select({" select count(*) from" + TABLE_NAME})
     int getNum();
 

@@ -86,6 +86,7 @@ public class SellerController {
             ViewObject vo = new ViewObject();
             vo.set("seller", seller);
             // vo.set("user", userService.getUser(question.getUserId()));
+            vo.set("sellertotal", orderService.selectTotalBySellerId(seller.getId()));
             vos.add(vo);
         }
         return vos;
