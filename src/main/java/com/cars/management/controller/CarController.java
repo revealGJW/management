@@ -34,6 +34,7 @@ public class CarController {
     public String index(Model model, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
 
         model.addAttribute("vos", getCars(page));
+        model.addAttribute("page",page);
         return "cars";
     }
 

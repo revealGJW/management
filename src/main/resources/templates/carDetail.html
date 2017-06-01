@@ -102,10 +102,8 @@
                         <td>$!{car.name}</td>
                         <td>$!{car.seatnum}</td>
                         <td>$!{car.gearbox}</td>
-                        <td>
-                            <a href="createseller.html"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
+                        <td><a href="/cars/update/$!{car.id}"><i class="icon-pencil"></i></a>
+                            <a href="/cars/delete/$!{car.id}"> <i class="icon-remove"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -126,10 +124,8 @@
                         <td>$!{carprice.discount}</td>
                         <td>$!{carprice.changeDate}</td>
                         <td>$!{carprice.status}</td>
-                        <td>
-                            <a href="createseller.html"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
+                        <td><a href="/carprices/update/$!{carprice.id}"><i class="icon-pencil"></i></a>
+                            <a href="/carprices/delete/$!{carprice.id}"> <i class="icon-remove"></i></a></td>
                     </tr>
                     #end
                     </tbody>

@@ -101,10 +101,8 @@
                         <td>$!{seller.name}</td>
                         <td>$!{seller.age}</td>
                         <td>$!{seller.tel}</td>
-                        <td>
-                            <a href="createseller.html"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
+                        <td><a href="/sellers/update/$!{seller.id}"><i class="icon-pencil"></i></a>
+                            <a href="/sellers/delete/$!{seller.id}"> <i class="icon-remove"></i></a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -125,10 +123,8 @@
                         <td>$!{order.createTime}</td>
                         <td>$!{order.status}</td>
                         <td>$!{order.finishTime}</td>
-                        <td>
-                            <a href="createseller.html"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
+                        <td><a href="/orders/update/$!{order.id}"><i class="icon-pencil"></i></a>
+                            <a href="/orders/delete/$!{order.id}"> <i class="icon-remove"></i></a></td>
                     </tr>
                     #end
                     </tbody>

@@ -38,11 +38,22 @@ public class OrderService {
         return orderDAO.selectOrdersByStatus(status, sellerId,(page - 1) * 10, 10);
     }
 
+    public float complated(){
+        return orderDAO.complated();
+    }
+
+    public float getPending(){
+        return orderDAO.getPending();
+    }
+
+    public int getNum(){
+        return orderDAO.getNum();
+    }
     public void addOrder(Order order){
         order.setCreateTime(new Date());
         CarPrice carPrice = carPriceService.selectCarPricesNow(order.getCarId());
         order.setTotal(carPrice.getPrice() * carPrice.getDiscount() * order.getNum());
-        if(order.getStatus().equals("ÒÑ½»»õ"))
+        if(order.getStatus().equals("å·²äº¤è´§"))
             order.setFinishTime(new Date());
         orderDAO.addOrder(order);
 

@@ -56,6 +56,26 @@ public class OrderController {
         return "redirect:/orders/";
     }
 
+    @RequestMapping("/update/{id}")
+    public String update(@PathVariable("id") int id, Model model){
+        model.addAttribute("order", orderDAO.selectOrder(id));
+        model.addAttribute("carlist", carDAO.selectCars(0,99));
+        model.addAttribute("sellerlist", sellerDAO.selectSellers(0,99));
+        return "updateorder";
+    }
+
+    @RequestMapping(value = "/update/", method = RequestMethod.POST)
+    public String update(Order order){
+        orderDAO.update(order);
+        return "redirect:/orders/";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id){
+        orderDAO.delete(id);
+        return "redirect:/orders/";
+    }
+
     @RequestMapping("/waitpay")
     public String wait(Model model, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
         String shit = "待支付";

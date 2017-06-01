@@ -17,6 +17,9 @@ public class SellerService {
     @Autowired
     SellerDAO sellerDAO;
 
+    public int getNum(){
+        return sellerDAO.getNum();
+    }
     public List<Seller> getSellers(int offset, int limit) {
         return sellerDAO.selectSellers(offset, limit);
     }

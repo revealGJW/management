@@ -18,6 +18,9 @@ public interface SellerDAO {
             " ) values (#{name}, #{age}, #{tel})"})
     int addSeller(Seller seller);
 
+    @Select({" select count(*) from" + TABLE_NAME})
+    int getNum();
+
     @Select( {" select " + SELECT_FILEDS + " from " + TABLE_NAME + " where id = #{id}"})
     Seller selectSeller(@Param("id") int id);
 

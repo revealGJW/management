@@ -4,6 +4,8 @@ import com.cars.management.dao.CarDAO;
 import com.cars.management.model.Car;
 import com.cars.management.model.ViewObject;
 import com.cars.management.service.CarService;
+import com.cars.management.service.OrderService;
+import com.cars.management.service.SellerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,52 +21,20 @@ import java.util.List;
  */
 @Controller
 public class indexController {
-
     @Autowired
-    CarService carService;
+    OrderService orderService;
     @Autowired
-    CarDAO carDAO;
+    SellerService sellerService;
     @RequestMapping(path = {"/","/index"})
-    public String index(Model model, @RequestParam(value = "page",required = false, defaultValue = "1") int page){
-
-        model.addAttribute("vos", getCars(page));
+    public String index(Model model){
+        model.addAttribute("complated", orderService.complated());
+        model.addAttribute("pending", orderService.getPending());
+        model.addAttribute("ordernum", orderService.getNum());
+        model.addAttribute("sellernum",sellerService.getNum());
+        model.addAttribute("orders",orderService.selectOrdersByPage(1));
+        model.addAttribute("sellers", sellerService.selectSellersByPage(1));
         return "index";
     }
 
 
-    @RequestMapping(path = {"/{singleId}"})
-    public String single(Model model, @PathVariable("singleId") int id){
-        model.addAttribute("car", carDAO.selectCar(id));
-        return "car";
-    }
-
-    @RequestMapping("/createseller")
-    public String createseller(){
-        return "createseller";
-    }
-
-    @RequestMapping("/createcar")
-    public String createcar(){
-        return "createcar";
-    }
-    @RequestMapping("/createorder")
-    public String createorder(){
-        return "createorder";
-    }
-    @RequestMapping("/createcarprice")
-    public String createcarprice(){
-        return "createcarprice";
-    }
-
-    private List<ViewObject> getCars(int page){
-        List<ViewObject> vos = new ArrayList<ViewObject>();
-        List<Car> cars = carService.selectCarsByPage(page);
-        for (Car car : cars) {
-            ViewObject vo = new ViewObject();
-            vo.set("car", car);
-           // vo.set("user", userService.getUser(question.getUserId()));
-            vos.add(vo);
-        }
-        return vos;
-    }
 }

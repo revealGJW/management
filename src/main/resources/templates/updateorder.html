@@ -17,20 +17,16 @@
 
     <!-- Demo page code -->
     <script>
-        function checkCar() {
-            var brand = document.getElementById("brand").value;
-            var name = document.getElementById("name").value;
-            var seatnum = document.getElementById("seatnum").value;
-            if (brand == "") {
-                alert("汽车品牌不能为空");
+        function checkOrder() {
+            var car = document.getElementById("carId").value;
+            var seller = document.getElementById("sellerId").value;
+
+            if (car == "") {
+                alert("汽车型号不能为空");
                 return false;
             }
-            if (name == "") {
-                alert("型号不能为空");
-                return false;
-            }
-            if (seatnum == "") {
-                alert("座位数不能为空");
+            if (seller == "") {
+                alert("销售人员不能为空");
                 return false;
             }
             document.getElementById("tab").submit();
@@ -91,20 +87,20 @@
 
     <div class="header">
 
-        <h1 class="page-title">添加汽车</h1>
+        <h1 class="page-title">添加销售人员</h1>
     </div>
 
     <ul class="breadcrumb">
-        <li><a href="/index">主页</a> <span class="divider">/</span></li>
-        <li><a href="/cars">汽车管理</a> <span class="divider">/</span></li>
-        <li class="active">添加汽车</li>
+        <li><a href="/index.html">主页</a> <span class="divider">/</span></li>
+        <li><a href="/sellers.html">订单管理</a> <span class="divider">/</span></li>
+        <li class="active">添加订单</li>
     </ul>
 
     <div class="container-fluid">
         <div class="row-fluid">
 
             <div class="btn-toolbar">
-                <button type="submit" class="btn btn-primary" onclick="checkCar();"><i class="icon-save"></i> 保存
+                <button type="submit" class="btn btn-primary" onclick="checkOrder();"><i class="icon-save"></i> 保存
                 </button>
                 <div class="btn-group">
                 </div>
@@ -112,17 +108,28 @@
             <div class="well">
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane active in" id="home">
-                        <form action="/cars/add/" method="post" id="tab">
-                            <label>品牌</label>
-                            <input id="brand" name="brand" type="text" class="input-xlarge">
-                            <label>型号</label>
-                            <input id="name" name="name" type="text" class="input-xlarge">
-                            <label>座位数</label>
-                            <input id="seatnum" name="seatnum" type="text" class="input-xlarge">
-                            <label>变速箱</label>
-                            <select name="gearbox" id="gearbox" class="input-xlarge">
-                                <option value="自动">自动变速箱</option>
-                                <option value="手动">手动变速箱</option>
+                        <form action="/orders/update/" method="post" id="tab">
+                            <label>ID</label>
+                            <input id="id" value="$!{order.id}" name="id" type="text" class="input-xlarge" readonly>
+                            <label>购买汽车型号</label>
+                            <select name="carId" id="carId" class="input-xlarge">
+                                #foreach($car in $carlist)
+                                <option value="$!{car.id}">$!{car.brand} $!{car.name}</option>
+                                #end
+                            </select>
+                            <label>数量</label>
+                            <input id="num" value="$!{order.num}" name="num" type="text" class="input-xlarge">
+                            <label>销售人员</label>
+                            <select name="sellerId" id="sellerId" class="input-xlarge">
+                                #foreach($seller in $sellerlist)
+                                <option value="$!{seller.id}">$!{seller.name}</option>
+                                #end
+                            </select>
+                            <label>状态</label>
+                            <select name="status" id="status" class="input-xlarge">
+                                <option value="待支付">待支付</option>
+                                <option value="已支付">已支付</option>
+                                <option value="已交货">已交货</option>
                             </select>
                             <!--<label>Time Zone</label>
                             <select name="DropDownTimezone" id="DropDownTimezone" class="input-xlarge">

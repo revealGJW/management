@@ -119,10 +119,17 @@
                     #end
                     </tbody>
                 </table>
-                <div class="M-box"></div>
+                <div id="pagenum" value="$!{page}"></div>
             </div>
             <div class="pagination">
-
+                <ul>
+                    <li><a href="#">Prev</a></li>
+                    <li><a href="?page=1">1</a></li>
+                    <li><a href="?page=2">2</a></li>
+                    <li><a href="?page=3">3</a></li>
+                    <li><a href="?page=4">4</a></li>
+                    <li><a href="?page=\"+ $!{page}+1>Next</a></li>
+                </ul>
             </div>
 
             <div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
